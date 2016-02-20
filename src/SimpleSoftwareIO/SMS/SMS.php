@@ -107,7 +107,8 @@ class SMS
 
         if (!$this->pretending)
         {
-            $this->driver->send($message);
+            $result = $this->driver->send($message);
+            return $result;
         }
         elseif (isset($this->logger))
         {
@@ -352,7 +353,7 @@ class SMS
      * Gets a message by it's ID.
      *
      * @param $messageId The requested messageId.
-     * @return IncomingMessage
+     * @return mixed
      */
     public function getMessage($messageId)
     {

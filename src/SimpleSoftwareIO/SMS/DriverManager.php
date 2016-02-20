@@ -18,6 +18,7 @@ use SimpleSoftwareIO\SMS\Drivers\LabsMobileSMS;
 use SimpleSoftwareIO\SMS\Drivers\MozeoSMS;
 use SimpleSoftwareIO\SMS\Drivers\NexmoSMS;
 use SimpleSoftwareIO\SMS\Drivers\TwilioSMS;
+use SimpleSoftwareIO\SMS\Drivers\UnisenderSMS;
 
 class DriverManager extends Manager
 {
@@ -163,5 +164,22 @@ class DriverManager extends Manager
             $this->app['request']->url(),
             $config['verify']
         );
+    }
+
+    /**
+     * Create an instance of the unisender driver
+     *
+     * @return SmsRu
+     */
+    public function createUnisenderDriver(){
+        $config = $this->app['config']->get('sms.unisender', []);
+
+        $driver = new UnisenderSMS(new Client);
+        $driver->buildBody([
+            'api_key' => $config['api_key'],
+            'format' => 'json'
+        ]);
+
+        return $driver;
     }
 }

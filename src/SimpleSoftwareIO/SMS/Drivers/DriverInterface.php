@@ -18,7 +18,7 @@ interface DriverInterface
      * Sends a SMS message.
      *
      * @param \SimpleSoftwareIO\SMS\OutgoingMessage $message
-     * @return void
+     * @return mixed
      */
     public function send(OutgoingMessage $message);
 
