@@ -79,7 +79,7 @@ class UnisenderSMS extends AbstractSMS implements DriverInterface
         $this->buildCall('/sendSms');
         $this->buildBody($data);
 
-        $raw = (string) $this->getRequest()->getBody();
+        $raw = (string) $this->postRequest()->getBody();
 
         return $raw;
     }
@@ -111,7 +111,7 @@ class UnisenderSMS extends AbstractSMS implements DriverInterface
         $this->buildCall('/checkSms');
         $this->buildBody($data);
 
-        $raw = (string) $this->getRequest()->getBody();
+        $raw = (string) $this->postRequest()->getBody();
 
         return $raw;
     }
