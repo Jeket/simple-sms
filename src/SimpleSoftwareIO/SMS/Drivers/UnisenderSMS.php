@@ -21,7 +21,7 @@ class UnisenderSMS extends AbstractSMS implements DriverInterface
      *
      * @var string
      */
-    protected $apiBase = 'http://api.unisender.com/ru/api';
+    protected $apiBase = 'https://api.unisender.com/ru/api';
 
     /**
      * The API's URL without modifications.
