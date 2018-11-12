@@ -1,5 +1,7 @@
 <?php namespace SimpleSoftwareIO\SMS;
 
+use SimpleSoftwareIO\SMS\Facades\SMS;
+
 /**
  * Simple-SMS
  * Simple-SMS is a package made for Laravel to send/receive (polling/pushing) text messages.
@@ -40,7 +42,7 @@ class SMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('sms', function ($app) {
+        $this->app->singleton('SimpleSoftwareIO\SMS', function ($app) {
 
             $this->registerSender();
             $sms = new SMS($app['sms.sender']);
@@ -64,7 +66,7 @@ class SMSServiceProvider extends ServiceProvider
      */
     public function registerSender()
     {
-        $this->app['sms.sender'] = $this->app->share(function ($app) {
+        $this->app['sms.sender'] = $this->app->singleton('SimpleSoftwareIO\SMS', function ($app) {
             return (new DriverManager($app))->driver();
         });
     }
